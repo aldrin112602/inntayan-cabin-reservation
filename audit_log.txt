@@ -1,0 +1,21 @@
+[ 2023-12-21 12:10:46 PM ][ admin ] -> User logged out successfully.
+[ 2023-12-21 7:09:22 PM ][ test@test ] -> Password reset successfully!
+[ 2023-12-21 7:11:15 PM ][ test@test ] -> Logged in successfully.
+[ 2023-12-21 7:42:55 PM ][ test@test ] -> User logged out successfully.
+[ 2023-12-21 7:51:07 PM ][ test@test ] -> Logged in successfully.
+[ 2023-12-21 3:33:22 AM ][ test@test ] -> User logged out successfully.
+[ 2023-12-21 3:33:38 AM ][ test@test ] -> Logged in successfully.
+[ 2023-12-21 3:39:56 AM ][ test@test ] -> Usernames can only contain letters, numbers, dots, dashes, and underscores!
+[ 2023-12-21 3:40:10 AM ][ test@test ] -> 2FA (ON) successfully!
+[ 2023-12-21 3:40:21 AM ][ test@test ] -> 2FA (OFF) successfully!
+[ 2023-12-21 3:40:26 AM ][ test@test ] -> 2FA (ON) successfully!
+[ 2023-12-21 3:40:45 AM ][ test@test ] -> User logged out successfully.
+[ 2023-12-21 3:41:12 AM ][ test@test ] -> Successfully send OTP for login security.
+[ 2023-12-21 3:42:50 AM ][ test@test ] -> User  successfully validate OTP for Login authentication.
+[ 2023-12-21 3:42:50 AM ][ test@test ] -> Logged in successfully.
+[ 2023-12-21 3:44:15 AM ][ test@test ] -> Usernames can only contain letters, numbers, dots, dashes, and underscores!
+[ 2023-12-21 3:44:55 AM ][ Aldrin123 ] -> Profile updated successfully!
+[ 2023-12-21 3:45:33 AM ][ Aldrin123 ] -> Profile updated successfully!
+[ 2023-12-21 3:45:58 AM ][ Aldrin123 ] -> 2FA (OFF) successfully!
+[ 2023-12-21 3:47:03 AM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-21 3:52:54 AM ][ Aldrin123 ] -> Logged in successfully.

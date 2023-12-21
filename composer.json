@@ -1,0 +1,14 @@
+{
+    "name": "administrator/inntayan",
+    "description": "INNTAYAN",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aldrin E. Caballero"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    }
+}
