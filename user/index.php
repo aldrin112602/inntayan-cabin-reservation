@@ -69,6 +69,15 @@
         box-sizing: border-box;
         transition: all 0.5s;
     }
+
+    .nav-left-sidebar, .dashboard-wrapper {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: linear-gradient(45deg, #1B4242, #9EC8B9);
+
+    }
+
+    
     </style>
 </head>
 
@@ -107,26 +116,19 @@
                                 </a>
                             </li>
                             <li class="nav-item my-1">
-                                <a href="./barangay_list.php"
+                                <a href="./add_booking.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
-                                    <span class="material-symbols-outlined">folder_managed</span>
-                                    Manage Brgy
+                                    <span class="material-symbols-outlined">add</span>
+                                    Add Booking
                                 </a>
                             </li>
                             <li class="nav-item my-1">
-                                <a href="./admin_list.php"
+                                <a href="./notifications.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
-                                    <span class="material-symbols-outlined">group</span>
-                                    Manage Admins
+                                    <span class="material-symbols-outlined">notifications</span>
+                                    Notifications
                                 </a>
                             </li>
-                            <!-- <li class="nav-item my-1">
-                                <a href="#"
-                                    class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
-                                    <span class="material-symbols-outlined">donut_large</span>
-                                    Reports
-                                </a>
-                            </li> -->
                             <li class="nav-item my-1">
                                 <a href="setting.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
@@ -142,7 +144,8 @@
                                 </a>
                             </li>
                             <li class="nav-item mt-3">
-                                <a href="../logout.php"
+                                <?php  require_once './logout_confirmation.php'; ?>
+<a href="#" onclick="logoutConfirmation()"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">logout</span>
                                     Logout
@@ -263,7 +266,7 @@
                             <div class="page-header">
                                 
                                     <h2 class="pageheader-title font-weight-bold d-flex justify-content-between align-items-center container-fluid">Home
-                                        <button class="btn btn-primary btn-sm">Book now</button>
+                                        <a href="./add_booking.php" class="btn btn-primary btn-sm">Book now</a>
                                     </h2>
                            
                                 <div class="page-breadcrumb">
@@ -282,10 +285,10 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
 
-                    <h1>Welcome <?php echo $_SESSION['username'] ?></h1>
-                    <h4>GOOD MORNING!</h4>
-                    <h4>Thanks for choosing INNTAYAN</h4>
-                    <h3 class="fw-bold mt-5">Frequintly ask Questions</h3>
+                    <h1 class="text-light">Welcome <?php echo $_SESSION['username'] ?></h1>
+                    <h4 class="text-light">GOOD MORNING!</h4>
+                    <h4 class="text-light">Thanks for choosing INNTAYAN</h4>
+                    <h3 class="fw-bold mt-5 text-light">Frequintly ask Questions</h3>
                     <div class="row">
                         <div class="col-12 col-md-6">
                             <div class="card">

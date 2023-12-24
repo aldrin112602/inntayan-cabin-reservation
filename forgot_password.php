@@ -168,7 +168,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['password'])) {
     <div style="
         min-height: 100vh;
         /* background: url(img/bg.jpeg); */
-        background-image: linear-gradient(-45deg, #FFE5E5, #AC87C5);
+        background-image: linear-gradient(45deg, #1B4242, #9EC8B9);
         background-repeat: no-repeat;
         background-size: 100% 100%;
       " class="w-full d-flex align-items-center justify-content-center flex-column px-3 position-relative">

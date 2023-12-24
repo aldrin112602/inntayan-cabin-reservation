@@ -15,6 +15,11 @@
     $row = mysqli_fetch_assoc($result);
     $profile = !empty($row['profile']) ? $row['profile'] : 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/7e/Circle-icons-profile.svg/1200px-Circle-icons-profile.svg.png';
     $username = $row['username'] ?? null;
+
+
+    if(!isset($_GET['id']) || empty($_GET['id']) || !isDataExists( "cabin_reservation", "*", "id={$_GET['id']}" )) {
+        header('Location: ./booking_records.php');
+    }
 ?>
 
 <!DOCTYPE html>
@@ -105,14 +110,14 @@
                                     width="100px"><br>
                                 <h3 class="text-white py-2"><?php echo $username ?></h3>
                             </li>
-                            <li class="nav-item my-1 current-page">
+                            <li class="nav-item my-1">
                                 <a href="./index.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">dashboard</span>
                                     Dashboard
                                 </a>
                             </li>
-                            <li class="nav-item my-1">
+                            <li class="nav-item my-1 current-page">
                                 <a href="./booking_records.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">book</span>
@@ -255,14 +260,14 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <div>
-                                    <h2 class="pageheader-title font-weight-bold">Dashboard</h2>
+                                    <h2 class="pageheader-title font-weight-bold text-light">Edit reservation</h2>
                                 </div>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="" class="breadcrumb-link">Dashboard</a>
+                                            <li class="breadcrumb-item"><a href="" class="breadcrumb-link text-light">id</a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Home</li>
+                                            <li class="breadcrumb-item active text-light" aria-current="page"><?php echo $_GET['id'] ?? 0 ?></li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -272,92 +277,79 @@
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
-                    <div class="alert alert-info alert-dismissible fade show py-3" role="alert">
-                        <p>
-                            Welcome <?php echo $_SESSION['username'] ?>!
-                        </p>
-                    </div>
-                    
-                    <div class="ecommerse-widget">
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Users</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">
-                                                <?php
-                                                    $user_counts = count(getRows("role = 'user'", "accounts"));
-                                                    echo $user_counts;
-                                                ?>
-                                            </h1>
-                                        </div>
+                    <!-- content -->
 
-                                    </div>
-                                    <div id="sparkline-revenue"><canvas width="334" height="100"
-                                            style="display: inline-block; width: 334.809px; height: 100px; vertical-align: top;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Admins</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">
-                                                <?php
-                                                    $admin_counts = count(getRows("role = 'admin'", "accounts"));
-                                                    echo $admin_counts;
-                                                ?>
-                                            </h1>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue2"><canvas width="334" height="100"
-                                            style="display: inline-block; width: 334.809px; height: 100px; vertical-align: top;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Cabin Booking</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">
-                                                <?php
-                                                    $booking_counts = count(getRows(null, "cabin_reservation"));
-                                                    echo $booking_counts;
-                                                ?>
-                                            </h1>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue3"><canvas width="334" height="100"
-                                            style="display: inline-block; width: 334.809px; height: 100px; vertical-align: top;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Male</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">
-                                                1
-                                            </h1>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue4"><canvas width="334" height="100"
-                                            style="display: inline-block; width: 334.809px; height: 100px; vertical-align: top;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-
+                    <?php
+                    require_once './handle_update.php';
+                    $data = getRows("id={$_GET['id']}", "cabin_reservation");
+                    ?>
+                    <form action="" method="POST" class="col-12 px-5 col-md-8 mx-auto">
+                        <input value="<?php echo $data[0]['username'] ?? null ?>" type="hidden" name="username">
+                        <h2 class="text-light fw-bold">BOOKING SLEEPING CABIN</h2>
+                        <div class="my-2">
+                            <small class="form-label fs-6 text-light" for="">Location</small>
+                            <input value="<?php echo $data[0]['location'] ?? null ?>" autocomplete="off" required
+                                class="form-control form-control-md" type="text" name="location">
                         </div>
-                        
+                        <div class="d-block d-md-flex justify-content-between align-items-center px-0">
+                            <div class="my-2 col-12 col-md-5 px-0">
+                                <small class="form-label fs-6 text-light" for="">Date</small>
+                                <input value="<?php echo $data[0]['date'] ?? null ?>" autocomplete="off" required
+                                    class="form-control form-control-md" type="date" name="date">
+                            </div>
+                            <div class="my-2  col-12 col-md-5 px-0">
+                                <small class="form-label fs-6 text-light" for="">Time</small>
+                                <input value="<?php echo $data[0]['time'] ?? null ?>" autocomplete="off" required
+                                    class="form-control form-control-md" type="time" name="time">
+                            </div>
+                        </div>
+                        <div class="my-2">
+                            <small class="form-label fs-6 text-light" for="">Cabin No.</small>
+                            <select name="cabin_no" class="form-select form-select-md">
+                                <option value="1" <?php echo ($data[0]['cabin_no'] ?? null) == '1' ? 'selected' : null ?>>1</option>
+                                <option value="2" <?php echo ($data[0]['cabin_no'] ?? null) == '2' ? 'selected' : null ?>>2</option>
+                                <option value="3" <?php echo ($data[0]['cabin_no'] ?? null) == '3' ? 'selected' : null ?>>3</option>
+                                <option value="4" <?php echo ($data[0]['cabin_no'] ?? null) == '4' ? 'selected' : null ?>>4</option>
+                                <option value="5" <?php echo ($data[0]['cabin_no'] ?? null) == '5' ? 'selected' : null ?>>5</option>
+                                <option value="6" <?php echo ($data[0]['cabin_no'] ?? null) == '6' ? 'selected' : null ?>>6</option>
+                                <option value="7" <?php echo ($data[0]['cabin_no'] ?? null) == '7' ? 'selected' : null ?>>7</option>
+                                <option value="8" <?php echo ($data[0]['cabin_no'] ?? null) == '8' ? 'selected' : null ?>>8</option>
+                            </select>
+                        </div>
+                        <div class="my-2">
+                            <small class="form-label fs-6 text-light" for="">Payment Method</small>
+                            <select name="payment_method" class="form-select form-select-md">
+                                <option value="Cash" <?php echo ($data[0]['payment_method'] ?? null) == 'Cash' ? 'selected' : null ?>>Cash</option>
+                                <option value="Credit Card" <?php echo ($data[0]['payment_method'] ?? null) == 'Credit Card' ? 'selected' : null ?>>Credit Card</option>
+                                <option value="Gcash" <?php echo ($data[0]['payment_method'] ?? null) == 'Gcash' ? 'selected' : null ?>>Gcash</option>
+                                <option value="Paypal" <?php echo ($data[0]['payment_method'] ?? null) == 'Paypal' ? 'selected' : null ?>>Paypal</option>
+                                <option value="Debit Card" <?php echo ($data[0]['payment_method'] ?? null) == 'Debit Card' ? 'selected' : null ?>>Debit Card</option>
+                                <option value="UPI" <?php echo ($data[0]['payment_method'] ?? null) == 'UPI' ? 'selected' : null ?>>UPI</option>
+                                <option value="Paymaya" <?php echo ($data[0]['payment_method'] ?? null) == 'Paymaya' ? 'selected' : null ?>>Paymaya</option>
+                                <option value="Others" <?php echo ($data[0]['payment_method'] ?? null) == 'Others' ? 'selected' : null ?>>Others</option>
+                            </select>
+                        </div>
+                        <div class="my-2">
+                            <small class="form-label fs-6 text-light" for="">Status</small>
+                            <select name="status" class="form-select form-select-md">
+                                <option value="Pending" <?php echo ($data[0]['status'] ?? null) == 'Pending' ? 'selected' : null ?>>Pending</option>
+                                <option value="Approved" <?php echo ($data[0]['status'] ?? null) == 'Approved' ? 'selected' : null ?>>Approved</option>
+                                <option value="Declined" <?php echo ($data[0]['status'] ?? null) == 'Declined' ? 'selected' : null ?>>Declined</option>
+                                <option value="Cancelled" <?php echo ($data[0]['status'] ?? null) == 'Cancelled' ? 'selected' : null ?>>Cancelled</option>
+                                
+                            </select>
+                        </div>
+                        <div class="my-2">
+                            <small class="form-label fs-6 text-light" for="">Promo Code</small>
+                            <input value="<?php echo $data[0]['promo_code'] ?? null ?>" autocomplete="off" required
+                                class="form-control form-control-md" type="number" name="promo_code">
+                        </div>
+                        <div class="my-2">
+                            <button class="btn btn-primary btn-sm" type="submit">Update booking</button>
+                        </div>
+                    </form>
 
-
-                    </div>
-
-
+                    <!-- end content -->
                 </div>
             </div>
         </div>

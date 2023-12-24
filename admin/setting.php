@@ -63,6 +63,13 @@
         box-sizing: border-box;
         transition: all 0.5s;
     }
+
+    .nav-left-sidebar, .dashboard-wrapper {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: linear-gradient(45deg, #1B4242, #9EC8B9);
+    }
+
     </style>
     <?php
     $name = $success_msg = $error_msg = $email = $username = $first_name = $last_name = $password = $inpt_password = $confirm_password = null;
@@ -204,10 +211,10 @@
                                 </a>
                             </li>
                             <li class="nav-item my-1">
-                                <a href="./records.php"
+                                <a href="./booking_records.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
-                                    <span class="material-symbols-outlined">bar_chart_4_bars</span>
-                                    Records
+                                    <span class="material-symbols-outlined">book</span>
+                                    Booking records
                                 </a>
                             </li>
                             <li class="nav-item my-1  current-page">
@@ -225,7 +232,8 @@
                                 </a>
                             </li>
                             <li class="nav-item mt-3">
-                                <a href="../logout.php"
+                                <?php  require_once './logout_confirmation.php'; ?>
+<a href="#" onclick="logoutConfirmation()"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">logout</span>
                                     Logout

@@ -19,3 +19,50 @@
 [ 2023-12-21 3:45:58 AM ][ Aldrin123 ] -> 2FA (OFF) successfully!
 [ 2023-12-21 3:47:03 AM ][ Aldrin123 ] -> User logged out successfully.
 [ 2023-12-21 3:52:54 AM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-21 9:00:50 AM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-21 9:03:09 AM ][ johndoe123 ] -> Logged in successfully.
+[ 2023-12-21 9:20:57 AM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-21 9:24:08 AM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-21 11:10:03 AM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-21 11:10:43 AM ][ johndoe123 ] -> Logged in successfully.
+[ 2023-12-21 11:35:46 AM ][ johndoe123 ] -> 2FA (ON) successfully!
+[ 2023-12-21 11:36:07 AM ][ johndoe123 ] -> Invalid number, please enter a valid number!
+[ 2023-12-21 11:36:34 AM ][ johndoe123 ] -> Profile updated successfully!
+[ 2023-12-21 11:36:50 AM ][ johndoe123 ] -> Profile updated successfully!
+[ 2023-12-21 11:37:13 AM ][ johndoe123 ] -> Profile updated successfully!
+[ 2023-12-21 11:38:12 AM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-21 11:38:36 AM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-21 11:46:01 AM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-22 10:16:20 AM ][ johndoe123 ] -> Successfully send OTP for login security.
+[ 2023-12-22 10:18:10 AM ][ johndoe123 ] -> Successfully send OTP for login security.
+[ 2023-12-22 10:18:37 AM ][ johndoe123 ] -> User  successfully validate OTP for Login authentication.
+[ 2023-12-22 10:18:37 AM ][ johndoe123 ] -> Logged in successfully.
+[ 2023-12-23 7:06:50 AM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-23 8:30:36 AM ][ johndoe123 ] -> Successfully send OTP for login security.
+[ 2023-12-23 8:31:02 AM ][ johndoe123 ] -> User  successfully validate OTP for Login authentication.
+[ 2023-12-23 8:31:02 AM ][ johndoe123 ] -> Logged in successfully.
+[ 2023-12-23 8:31:40 AM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-23 8:32:05 AM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-23 9:47:58 AM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-23 9:49:00 AM ][ johndoe123 ] -> Successfully send OTP for login security.
+[ 2023-12-23 9:49:25 AM ][ johndoe123 ] -> User  successfully validate OTP for Login authentication.
+[ 2023-12-23 9:49:25 AM ][ johndoe123 ] -> Logged in successfully.
+[ 2023-12-23 9:49:47 AM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-23 9:50:05 AM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-23 9:53:28 AM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-23 10:02:11 AM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-23 10:02:20 AM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-23 10:02:57 AM ][ johndoe123 ] -> Logged in successfully.
+[ 2023-12-23 10:03:06 AM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-23 10:03:11 AM ][ johndoe123 ] -> Logged in successfully.
+[ 2023-12-23 10:32:30 AM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-24 4:05:57 PM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-24 4:09:31 PM ][ Aldrin123 ] -> Password reset successfully!
+[ 2023-12-24 4:11:37 PM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-24 4:15:39 PM ][ Aldrin123 ] -> 2FA (ON) successfully!
+[ 2023-12-24 4:15:43 PM ][ Aldrin123 ] -> 2FA (OFF) successfully!
+[ 2023-12-24 4:15:45 PM ][ Aldrin123 ] -> 2FA (ON) successfully!
+[ 2023-12-24 4:17:35 PM ][ johndoe123 ] -> Logged in successfully.
+[ 2023-12-24 4:21:45 PM ][ johndoe123 ] -> Profile updated successfully!
+[ 2023-12-24 4:21:51 PM ][ johndoe123 ] -> Profile updated successfully!
+[ 2023-12-24 4:22:01 PM ][ johndoe123 ] -> User logged out successfully.

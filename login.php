@@ -77,7 +77,7 @@
         /* background: url(img/bg.jpeg); */
         background-repeat: no-repeat;
         background-size: 100% 100%;
-        background-image: linear-gradient(-45deg, #FFE5E5, #AC87C5);
+        background-image: linear-gradient(45deg, #1B4242, #9EC8B9);
       " class="w-full d-flex align-items-center justify-content-center flex-column px-3">
         <img src="img/logo.png" alt="logo" class="img-fluid mb-4" width="200px">
         <?php if(!isset($_SESSION['validate_otp'])) { ?>

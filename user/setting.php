@@ -64,6 +64,12 @@
         box-sizing: border-box;
         transition: all 0.5s;
     }
+
+    .nav-left-sidebar, .dashboard-wrapper {
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-image: linear-gradient(45deg, #1B4242, #9EC8B9);
+    }
     </style>
     <?php
     $name = $success_msg = $error_msg = $email = $username = $first_name = $last_name = $password = $inpt_password = $confirm_password = null;
@@ -200,22 +206,22 @@
                             <li class="nav-item my-1">
                                 <a href="./index.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
-                                    <span class="material-symbols-outlined">dashboard</span>
-                                    Dashboard
+                                    <span class="material-symbols-outlined">home</span>
+                                    Home
                                 </a>
                             </li>
                             <li class="nav-item my-1">
-                                <a href="./barangay_list.php"
+                                <a href="./add_booking.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
-                                    <span class="material-symbols-outlined">folder_managed</span>
-                                    Manage Brgy
+                                    <span class="material-symbols-outlined">add</span>
+                                    Add Booking
                                 </a>
                             </li>
                             <li class="nav-item my-1">
-                                <a href="./admin_list.php"
+                                <a href="./notifications.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
-                                    <span class="material-symbols-outlined">group</span>
-                                    Manage Admins
+                                    <span class="material-symbols-outlined">notifications</span>
+                                    Notifications
                                 </a>
                             </li>
                             <li class="nav-item my-1  current-page">
@@ -233,7 +239,8 @@
                                 </a>
                             </li>
                             <li class="nav-item mt-3">
-                                <a href="../logout.php"
+                                <?php  require_once './logout_confirmation.php'; ?>
+<a href="#" onclick="logoutConfirmation()"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">logout</span>
                                     Logout
