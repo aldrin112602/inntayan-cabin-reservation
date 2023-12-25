@@ -7,6 +7,10 @@
     "push": "git add . && git commit -m 'Imissyou' && git push"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "email": "caballeroaldrin02@gmail.com",
+    "name": "Aldrin Caballero",
+    "url": "https://github.com/aldrin112602"
+  },
   "license": "ISC"
 }
