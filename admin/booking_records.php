@@ -290,6 +290,7 @@
                                 <th scope="col">Payment method</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Created</th>
+                                <th scope="col">proof of payment</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -308,6 +309,11 @@
                                     <td>{$row['payment_method']}</td>
                                     <td>{$row['status']}</td>
                                     <td>{$row['created_at']}</td>
+                                    <td>
+                                        <a href='../user/payments/{$row['proof_of_payment']}'>
+                                            <img width='50px' title='click to view' src='../user/payments/{$row['proof_of_payment']}' class='d-block mx-auto'>
+                                        </a>
+                                    </td>
                                     <td>
                                         <a href='edit_reservation.php?id={$row['id']}' class='btn btn-primary btn-sm'>Edit</a>
                                         <a href='#' class='btn btn-danger btn-sm' onclick=\"removeReservation(" . $row['id'] . ", '" . $row['username'] . "')\">Delete</a>
