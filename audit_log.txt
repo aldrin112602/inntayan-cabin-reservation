@@ -66,3 +66,6 @@
 [ 2023-12-24 4:21:45 PM ][ johndoe123 ] -> Profile updated successfully!
 [ 2023-12-24 4:21:51 PM ][ johndoe123 ] -> Profile updated successfully!
 [ 2023-12-24 4:22:01 PM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-25 3:42:48 PM ][ Aldrin123 ] -> Logged in successfully.
+[ 2023-12-25 3:43:03 PM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-25 3:43:20 PM ][ johndoe123 ] -> Logged in successfully.

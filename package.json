@@ -1,0 +1,12 @@
+{
+  "name": "inntayan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "push": "git add . && git commit -m 'Imissyou' && git push"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

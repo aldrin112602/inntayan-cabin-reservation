@@ -13,20 +13,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $cabin_no = $post['cabin_no'];
     $promo_code = $post['promo_code'];
     $payment_method = $post['payment_method'];
+    $time_of_stay = $post['time_of_stay'];
+    $amount_to_pay = $post['amount_to_pay'];
+    $status = 'Pending';
+    
 
-    $status = 'Pending'; // Default status
-    $queryInsert = "INSERT INTO cabin_reservation (username, location, date, time, cabin_no, promo_code, payment_method, status)
-                    VALUES ('$username', '$location', '$date', '$time', $cabin_no, '$promo_code', '$payment_method', '$status')";
+    if (isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+        $file = $_FILES['file'];
+        $fileName = $file['name'];
+        $fileTmpName = $file['tmp_name'];
+        $fileNameNew = uniqid('', true) . '.' . strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        $fileDestination = './payments/' . $fileNameNew;
 
-    if ($conn->query($queryInsert)) {
-        $success_msg = "Reservation successfully created!";
-    } else {
-        $err_msg = "Error creating reservation: " . $conn->error;
+        if (move_uploaded_file($fileTmpName, $fileDestination)) {
+            $queryInsert = "INSERT INTO cabin_reservation (username, location, date, time, cabin_no, promo_code, payment_method, status, time_of_stay, amount_to_pay, proof_of_payment) VALUES ('$username', '$location', '$date', '$time', $cabin_no, '$promo_code', '$payment_method', '$status', '$time_of_stay', '$amount_to_pay', '$fileNameNew')";
+
+            if ($conn->query($queryInsert)) {
+                $success_msg = "Reservation successfully created!";
+            } else {
+                $err_msg = "Error creating reservation: " . $conn->error;
+            }
+        }
     }
-
-    
-    
-
 }
 
 $querySelect = "SELECT * FROM cabin_reservation WHERE username = '{$_SESSION['username']}'";

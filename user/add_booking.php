@@ -402,7 +402,7 @@
 
 
 
-                    <form action="" method="POST" class="col-12 px-5 col-md-8 mx-auto">
+                    <form action="" method="POST" class="col-12 px-5 col-md-8 mx-auto" enctype="multipart/form-data">
                         <h2 class="text-light fw-bold">BOOKING SLEEPING CABIN</h2>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Location</small>
@@ -520,8 +520,7 @@
                         </script>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Upload proof of payment</small>
-                            <input required class="form-control form-control-md" type="file"
-                                name="file">
+                            <input required class="form-control form-control-md" type="file" name="file" accept="image/*">
                         </div>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Promo Code</small>

@@ -43,6 +43,9 @@ $queryCreateTable = "CREATE TABLE IF NOT EXISTS cabin_reservation (
     cabin_no INT NOT NULL,
     promo_code VARCHAR(50) NOT NULL,
     payment_method VARCHAR(50) NOT NULL,
+    time_of_stay VARCHAR(50) NOT NULL,
+    amount_to_pay VARCHAR(50) NOT NULL,
+    proof_of_payment VARCHAR(500) NOT NULL,
     status VARCHAR(50) DEFAULT 'Pending' NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
