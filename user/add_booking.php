@@ -54,10 +54,15 @@
     <link rel="stylesheet" href="../assets/vendor/charts/c3charts/c3.css">
     <link rel="stylesheet" href="../assets/vendor/fonts/flag-icon-css/flag-icon.min.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../src/sweetalert2/sweetalert2.all.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <!-- custom styles -->
@@ -70,7 +75,8 @@
         transition: all 0.5s;
     }
 
-    .nav-left-sidebar, .dashboard-wrapper {
+    .nav-left-sidebar,
+    .dashboard-wrapper {
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-image: linear-gradient(45deg, #1B4242, #9EC8B9);
@@ -142,7 +148,7 @@
                             </li>
                             <li class="nav-item mt-3">
                                 <?php  require_once './logout_confirmation.php'; ?>
-<a href="#" onclick="logoutConfirmation()"
+                                <a href="#" onclick="logoutConfirmation()"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">logout</span>
                                     Logout
@@ -265,7 +271,8 @@
                                 <h2
                                     class="pageheader-title font-weight-bold d-flex justify-content-between align-items-center container-fluid">
                                     Booking
-                                    <button class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#myBooking">My Booking</button>
+                                    <button class="btn btn-sm btn-dark" data-bs-toggle="modal"
+                                        data-bs-target="#myBooking">My Booking</button>
                                 </h2>
 
                                 <div class="page-breadcrumb">
@@ -284,13 +291,12 @@
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
                     <?php require_once './handle_booking.php' ?>
-                    <div class="modal fade" id="myBooking" data-bs-backdrop="static"
-                        data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal fade" id="myBooking" data-bs-backdrop="static" data-bs-keyboard="false"
+                        tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
                         <div class="modal-dialog modal-lg">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h1 class="modal-title fs-5"
-                                        id="staticBackdropLabel">My booking</h1>
+                                    <h1 class="modal-title fs-5" id="staticBackdropLabel">My booking</h1>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal"
                                         aria-label="Close"></button>
                                 </div>
@@ -336,64 +342,62 @@
                                     </table>
                                 </div>
                                 <div class="modal-footer">
-                                    <button type="button" class="btn btn-light"
-                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
                                 </div>
                             </div>
                         </div>
                     </div>
 
                     <script>
-                        function confirmCancellation(reservationId, toCancel = true) {
-                            Swal.fire({
-                                title: 'Are you sure?',
-                                text: 'You won\'t be able to revert this!',
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, cancel it!'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    handleCancellationAndDeletion(reservationId, toCancel);
-                                }
-                            });
-                        }
+                    function confirmCancellation(reservationId, toCancel = true) {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: 'You won\'t be able to revert this!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, cancel it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                handleCancellationAndDeletion(reservationId, toCancel);
+                            }
+                        });
+                    }
 
-                        function handleCancellationAndDeletion(reservationId, toCancel) {
-                            const formData = new FormData();
-                            formData.append('reservationId', reservationId);
-                            fetch((toCancel ? './cancel_reservation.php' : './remove_reservation.php'), {
+                    function handleCancellationAndDeletion(reservationId, toCancel) {
+                        const formData = new FormData();
+                        formData.append('reservationId', reservationId);
+                        fetch((toCancel ? './cancel_reservation.php' : './remove_reservation.php'), {
                                 method: 'POST',
                                 body: formData,
                             })
                             .then(response => response.json())
                             .then(data => {
                                 if (data.success) {
-                                    if(toCancel) {
+                                    if (toCancel) {
                                         Swal.fire('Cancelled!', 'Your reservation has been cancelled.', 'success')
-                                        .then(() => (location.href = './add_booking.php'));
+                                            .then(() => (location.href = './add_booking.php'));
                                         return;
                                     }
 
                                     Swal.fire('Deleted!', 'Your reservation has been deleted.', 'success')
-                                    .then(() => (location.href = './add_booking.php'));
-                                    
+                                        .then(() => (location.href = './add_booking.php'));
+
                                 } else {
-                                    if(toCancel) {
+                                    if (toCancel) {
                                         Swal.fire('Error!', 'Failed to cancel reservation.', 'error');
                                         return;
                                     }
                                     Swal.fire('Error!', 'Failed to delete reservation.', 'error');
-                                    
+
                                 }
                             })
                             .catch(error => {
                                 console.error('Error:', error);
                                 Swal.fire('Error!', 'An error occurred while processing your request.', 'error');
                             });
-                        }
-
+                    }
                     </script>
 
 
@@ -402,19 +406,64 @@
                         <h2 class="text-light fw-bold">BOOKING SLEEPING CABIN</h2>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Location</small>
-                            <input autocomplete="off" required
-                                class="form-control form-control-md" type="text" name="location">
+                            <select name="location" class="form-select form-select-md">
+                                <option value="NAIA 1">NAIA 1</option>
+                                <option value="NAIA 2">NAIA 2</option>
+                                <option value="NAIA 3">NAIA 3</option>
+                                <option value="NAIA 4">NAIA 4</option>
+                            </select>
                         </div>
+                        <div class="my-2">
+                            <small class="form-label fs-6 text-light" for="">Select time of stay</small>
+                            <select required id="time_of_stay" name="time_of_stay" class="form-select form-select-md">
+                                <option value="30 minutes">30 minutes</option>
+                            </select>
+                        </div>
+
+                        <div class="my-2 position-relative">
+                            <small class="form-label fs-6 text-light" for="">Amount to pay</small>
+                            <input id="amount_to_pay" value="150" style="padding-left: 40px;" readonly
+                                class="form-control form-control-md" type="number" name="amount_to_pay">
+                            <i class="fa-solid fa-peso-sign"
+                                style="position: absolute; top: 50%; left: 20px; top: 57%;"></i>
+                        </div>
+
+                        <script>
+                        (function() {
+                            const d = document;
+                            const time_of_stay_select = d.getElementById('time_of_stay'),
+                                amount_to_pay = d.getElementById('amount_to_pay');
+                            for (let i = 1; i <= 24; i++) {
+                                const option = d.createElement('option');
+                                const hoursText = i === 1 ? 'hour' : 'hours';
+                                option.value = `${i} ${hoursText}`;
+                                option.innerHTML = `${i} ${hoursText}`;
+                                time_of_stay_select.appendChild(option);
+                            }
+
+                            time_of_stay_select.addEventListener('change', () => {
+                                const time_of_stay_value = parseInt(time_of_stay_select.value.split(' ')[
+                                0]);
+                                if (time_of_stay_value > 24) {
+                                    amount_to_pay.value = 150;
+                                    return
+                                }
+                                amount_to_pay.value = time_of_stay_value * 300;
+
+                            })
+                        })();
+                        </script>
+
                         <div class="d-block d-md-flex justify-content-between align-items-center px-0">
                             <div class="my-2 col-12 col-md-5 px-0">
                                 <small class="form-label fs-6 text-light" for="">Date</small>
-                                <input autocomplete="off" required
-                                    class="form-control form-control-md" type="date" name="date">
+                                <input autocomplete="off" required class="form-control form-control-md" type="date"
+                                    name="date">
                             </div>
                             <div class="my-2  col-12 col-md-5 px-0">
                                 <small class="form-label fs-6 text-light" for="">Time</small>
-                                <input autocomplete="off" required
-                                    class="form-control form-control-md" type="time" name="time">
+                                <input autocomplete="off" required class="form-control form-control-md" type="time"
+                                    name="time">
                             </div>
                         </div>
                         <div class="my-2">
@@ -445,8 +494,8 @@
                         </div>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Promo Code</small>
-                            <input autocomplete="off" required
-                                class="form-control form-control-md" type="number" name="promo_code">
+                            <input autocomplete="off" required class="form-control form-control-md" type="number"
+                                name="promo_code">
                         </div>
                         <div class="my-2">
                             <button class="btn btn-primary btn-sm" type="submit ">Book now</button>
