@@ -443,7 +443,7 @@
 
                             time_of_stay_select.addEventListener('change', () => {
                                 const time_of_stay_value = parseInt(time_of_stay_select.value.split(' ')[
-                                0]);
+                                    0]);
                                 if (time_of_stay_value > 24) {
                                     amount_to_pay.value = 150;
                                     return
@@ -481,7 +481,7 @@
                         </div>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Payment Method</small>
-                            <select name="payment_method" class="form-select form-select-md">
+                            <select id="payment_method" name="payment_method" class="form-select form-select-md">
                                 <option value="Cash">Cash</option>
                                 <option value="Credit Card">Credit Card</option>
                                 <option value="Gcash">Gcash</option>
@@ -491,6 +491,37 @@
                                 <option value="Paymaya">Paymaya</option>
                                 <option value="Others">Others</option>
                             </select>
+                        </div>
+                        <script>
+                        (function() {
+                            function showImage() {
+                                const customHtml = `
+                                    <div>
+                                        <p>Please scan the QR code below.
+                                        <span class="text-white bg-warning fs-6">
+                                        <br/>
+                                        <b>Note: </b>After making the payment, kindly take a screenshot for your payment reference. <br/> You can upload the proof of payment later.</span></p>
+                                        
+                                        <img src="https://www.qrcode-monkey.com/img/default-preview-qr.svg" alt="QR" class="d-block mx-auto" width="70%">
+                                    </div>
+                                `;
+
+                                Swal.fire({
+                                    title: 'Payment Information',
+                                    html: customHtml,
+                                    showCloseButton: true,
+                                    showConfirmButton: true,
+                                    customClass: 'swal-wide'
+                                });
+                            }
+
+                            $('#payment_method').change(showImage);
+                        })()
+                        </script>
+                        <div class="my-2">
+                            <small class="form-label fs-6 text-light" for="">Upload proof of payment</small>
+                            <input required class="form-control form-control-md" type="file"
+                                name="file">
                         </div>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Promo Code</small>
