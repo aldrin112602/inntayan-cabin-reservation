@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "push": "git add . && git commit -m 'Imissyou' && git push"
+    "push": "git add . && git commit -m  Imissyou  && git push"
   },
   "keywords": [],
   "author": {
