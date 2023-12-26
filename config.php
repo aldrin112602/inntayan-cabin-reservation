@@ -66,3 +66,14 @@ $queryCreateTable = "CREATE TABLE IF NOT EXISTS notifications (
 if (!$conn->query($queryCreateTable)) {
     die("Error creating table: " . $conn->error);
 }
+
+
+$queryCreateTable = "CREATE TABLE IF NOT EXISTS cabin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    status VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+)";
+
+if (!$conn->query($queryCreateTable)) {
+    die("Error creating table: " . $conn->error);
+}
