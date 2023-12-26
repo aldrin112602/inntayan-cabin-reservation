@@ -105,7 +105,7 @@
                                     width="100px"><br>
                                 <h3 class="text-white py-2"><?php echo $username ?></h3>
                             </li>
-                            <li class="nav-item my-1 current-page">
+                            <li class="nav-item my-1">
                                 <a href="./index.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">dashboard</span>
@@ -126,7 +126,7 @@
                                     Manage Cabins
                                 </a>
                             </li>
-                            <li class="nav-item my-1">
+                            <li class="nav-item my-1 current-page">
                                 <a href="./transaction_history.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">history</span>
@@ -269,14 +269,14 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <div>
-                                    <h2 class="pageheader-title font-weight-bold">Dashboard</h2>
+                                    <h2 class="pageheader-title font-weight-bold text-light">Booking records</h2>
                                 </div>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="" class="breadcrumb-link">Dashboard</a>
+                                            <li class="breadcrumb-item"><a href="" class="breadcrumb-link text-light">cabin</a>
                                             </li>
-                                            <li class="breadcrumb-item active" aria-current="page">Home</li>
+                                            <li class="breadcrumb-item active text-light" aria-current="page">Home</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -286,94 +286,102 @@
                     <!-- ============================================================== -->
                     <!-- end pageheader  -->
                     <!-- ============================================================== -->
-                    <div class="alert alert-info alert-dismissible fade show py-3" role="alert">
-                        <p>
-                            Welcome <?php echo $_SESSION['username'] ?>!
-                        </p>
-                    </div>
-                    
-                    <div class="ecommerse-widget">
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Users</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">
-                                                <?php
-                                                    $user_counts = count(getRows("role = 'user'", "accounts"));
-                                                    echo $user_counts;
-                                                ?>
-                                            </h1>
-                                        </div>
+                    <!-- content -->
 
-                                    </div>
-                                    <div id="sparkline-revenue"><canvas width="334" height="100"
-                                            style="display: inline-block; width: 334.809px; height: 100px; vertical-align: top;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Admins</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">
-                                                <?php
-                                                    $admin_counts = count(getRows("role = 'admin'", "accounts"));
-                                                    echo $admin_counts;
-                                                ?>
-                                            </h1>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue2"><canvas width="334" height="100"
-                                            style="display: inline-block; width: 334.809px; height: 100px; vertical-align: top;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Total Cabin Booking</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">
-                                                <?php
-                                                    $booking_counts = count(getRows(null, "cabin_reservation"));
-                                                    echo $booking_counts;
-                                                ?>
-                                            </h1>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue3"><canvas width="334" height="100"
-                                            style="display: inline-block; width: 334.809px; height: 100px; vertical-align: top;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h5 class="text-muted">Available cabins</h5>
-                                        <div class="metric-value d-inline-block">
-                                            <h1 class="mb-1">
-                                                <?php
-                                                 echo count(getRows("status='Enabled'", "cabin"))
-                                                ?>
-                                            </h1>
-                                        </div>
-                                    </div>
-                                    <div id="sparkline-revenue4"><canvas width="334" height="100"
-                                            style="display: inline-block; width: 334.809px; height: 100px; vertical-align: top;"></canvas>
-                                    </div>
-                                </div>
-                            </div>
+                    <?php
+                    $data = getRows(null, "cabin_reservation");
+                    ?>
+                    <table class="table table-striped table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Location</th>
+                                <th scope="col">Date</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Cobin No.</th>
+                                <th scope="col">Promo Code</th>
+                                <th scope="col">Payment method</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Created</th>
+                                <th scope="col">proof of payment</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $i = 1;
+                            foreach ($data as $row) {
+                                echo "<tr>
+                                    <td>{$row['id']}</td>
+                                    <td>{$row['username']}</td>
+                                    <td>{$row['location']}</td>
+                                    <td>{$row['date']}</td>
+                                    <td>{$row['time']}</td>
+                                    <td>{$row['cabin_no']}</td>
+                                    <td>{$row['promo_code']}</td>
+                                    <td>{$row['payment_method']}</td>
+                                    <td>{$row['status']}</td>
+                                    <td>{$row['created_at']}</td>
+                                    <td>
+                                        <a href='../user/payments/{$row['proof_of_payment']}'>
+                                            <img width='50px' title='click to view' src='../user/payments/{$row['proof_of_payment']}' class='d-block mx-auto'>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href='edit_reservation.php?id={$row['id']}' class='btn btn-primary btn-sm'>Edit</a>
+                                        <a href='#' class='btn btn-danger btn-sm' onclick=\"removeReservation(" . $row['id'] . ", '" . $row['username'] . "')\">Delete</a>
+                                    </td>
+                                </tr>";
+                            }
+                            ?>
+                            <script>
+                                function removeReservation(id, username) {
+                                    
+                                    Swal.fire({
+                                        title: "Are you sure?",
+                                        text: "You won't be able to revert this!",
+                                        icon: "warning",
+                                        showCancelButton: true,
+                                        confirmButtonColor: "#3085d6",
+                                        cancelButtonColor: "#d33",
+                                        confirmButtonText: "Yes, delete it!"
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            const formData = new FormData();
+                                            formData.append('id', id);
+                                            formData.append('username', username);
+                                            fetch('./remove_reservation.php', {
+                                                    method: 'POST',
+                                                    body: formData,
+                                                })
+                                                .then(response => response.json())
+                                                .then(data => {
+                                                    if (data.success) {
+                                                        Swal.fire(
+                                                            'Deleted!',
+                                                            'Reservation has been deleted.',
+                                                            'success'
+                                                        ).then(function() {
+                                                            location.reload();
+                                                        })
+                                                    } else {
+                                                        Swal.fire(
+                                                            'Ops!',
+                                                            'Failed to remove reservation.',
+                                                            'error'
+                                                        )
+                                                    }
+                                                });
+                                        }
+                                    });
+                                }
+                            </script>
 
-                        </div>
-                        
+                        </tbody>
+                    </table>
 
-
-                    </div>
-
-
+                    <!-- end content -->
                 </div>
             </div>
         </div>

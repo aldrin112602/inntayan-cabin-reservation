@@ -17,6 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $time_of_stay = $post['time_of_stay'];
     $amount_to_pay = $post['amount_to_pay'];
+
+
+    if($status == 'Done') {
+        send
+    }
     
     $queryUpdate = "UPDATE cabin_reservation SET cabin_no = '$cabin_no', time_of_stay = '$time_of_stay', amount_to_pay = '$amount_to_pay', time = '$time', date = '$date', location = '$location', promo_code = '$promo_code', payment_method = '$payment_method', status = '$status' WHERE id={$_GET['id']}";
 

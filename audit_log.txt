@@ -76,3 +76,5 @@
 [ 2023-12-25 11:54:34 AM ][ johndoe123 ] -> Logged in successfully.
 [ 2023-12-25 11:55:46 AM ][ johndoe123 ] -> Logged in successfully.
 [ 2023-12-26 12:02:47 PM ][ johndoe123 ] -> User logged out successfully.
+[ 2023-12-26 5:39:52 PM ][ Aldrin123 ] -> User logged out successfully.
+[ 2023-12-26 5:40:23 PM ][ johndoe123 ] -> Logged in successfully.

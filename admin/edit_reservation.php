@@ -399,6 +399,7 @@
                                         <option value="Approved" <?php echo ($data[0]['status'] ?? null) == 'Approved' ? 'selected' : null ?>>Approved</option>
                                         <option value="Declined" <?php echo ($data[0]['status'] ?? null) == 'Declined' ? 'selected' : null ?>>Declined</option>
                                         <option value="Cancelled" <?php echo ($data[0]['status'] ?? null) == 'Cancelled' ? 'selected' : null ?>>Cancelled</option>
+                                        <option value="Done" <?php echo ($data[0]['status'] ?? null) == 'Done' ? 'selected' : null ?>>Done</option>
                                     </select>
                                 </div>
                                 <div class="mt-3">

@@ -127,6 +127,13 @@
                                 </a>
                             </li>
                             <li class="nav-item my-1">
+                                <a href="./transaction_history.php"
+                                    class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
+                                    <span class="material-symbols-outlined">history</span>
+                                    Transaction history
+                                </a>
+                            </li>
+                            <li class="nav-item my-1">
                                 <a href="setting.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">settings</span>
