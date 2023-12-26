@@ -24,7 +24,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HOME - INNTAYAN</title>
+    <title>Transaction history - INNTAYAN</title>
     <link rel="stylesheet" href="../src/bootstrap.min.css" />
     <!-- Favicon -->
     <link rel="icon" href="../img/favicon.ico" type="image/x-icon" />
@@ -149,7 +149,7 @@
                             </li>
                             <li class="nav-item mt-3">
                                 <?php  require_once './logout_confirmation.php'; ?>
-<a href="#" onclick="logoutConfirmation()"
+                                <a href="#" onclick="logoutConfirmation()"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">logout</span>
                                     Logout
@@ -269,14 +269,14 @@
                         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                             <div class="page-header">
                                 <div>
-                                    <h2 class="pageheader-title font-weight-bold text-light">Booking records</h2>
+                                    <h2 class="pageheader-title font-weight-bold text-light">Transaction history</h2>
                                 </div>
                                 <div class="page-breadcrumb">
                                     <nav aria-label="breadcrumb">
                                         <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="" class="breadcrumb-link text-light">cabin</a>
+                                            <li class="breadcrumb-item"><a href="" class="breadcrumb-link text-light">history</a>
                                             </li>
-                                            <li class="breadcrumb-item active text-light" aria-current="page">Home</li>
+                                            <li class="breadcrumb-item active text-light" aria-current="page">index</li>
                                         </ol>
                                     </nav>
                                 </div>
@@ -289,7 +289,7 @@
                     <!-- content -->
 
                     <?php
-                    $data = getRows(null, "cabin_reservation");
+                    $data = getRows("status = 'Done'", "cabin_reservation");
                     ?>
                     <table class="table table-striped table-hover">
                         <thead>
