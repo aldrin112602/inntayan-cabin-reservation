@@ -106,7 +106,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav flex-column">
                             <li class="nav-item text-center">
-                                <img src="../img/logo.png" alt="pims logo" class="img-fluid" width="200px">
+                                <img src="../assets/img/logo.png" alt="pims logo" class="img-fluid" width="200px">
                             </li>
                             <li class="nav-item text-center my-4">
                                 <img src="<?php echo $profile ?>" alt="Profile avatar" class="img-fluid rounded-circle"
@@ -132,6 +132,13 @@
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">book</span>
                                     Manage Cabins
+                                </a>
+                            </li>
+                            <li class="nav-item my-1">
+                                <a href="./transaction_history.php"
+                                    class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
+                                    <span class="material-symbols-outlined">history</span>
+                                    Transaction history
                                 </a>
                             </li>
                             <li class="nav-item my-1">

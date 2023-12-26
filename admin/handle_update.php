@@ -6,7 +6,7 @@ $err_msg = $success_msg = null;
 
 
 function sendSMS($message, $recipient) {
-    $apiEndpoint = "https://app.philsms.com/api/v3/sms/send";
+    $apiEndpoint = "https://app.philsms.com/api/v3/send";
     $apiToken = "188|FAhI0qNgFxVs66gCpgeMuRzYr42031CxngqqOqQJ";
 
     $data = array(
@@ -42,6 +42,22 @@ function sendSMS($message, $recipient) {
     }
 }
 
+function formatPhoneNumber($phoneNumber) {
+    $phoneNumber = preg_replace('/\D/', '', $phoneNumber);
+
+    if (strpos($phoneNumber, '0') === 0) {
+        $phoneNumber = '63' . substr($phoneNumber, 1);
+    }
+
+    if (strpos($phoneNumber, '9') === 0 && strlen($phoneNumber) === 10) {
+        $phoneNumber = '63' . $phoneNumber;
+    }
+
+    $phoneNumber = ltrim($phoneNumber, '+');
+    
+    return $phoneNumber;
+}
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $post = validate_post_data($_POST);
@@ -63,20 +79,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $users = getRows("username = '$username'", "accounts");
         if (count($users) > 0) {
             $number = trim($users[0]['contact']);
-            
-            if (isset($number) && !empty($number)) {
-                if(sendSMS("Hi ". $number .", ", $number)) {
-                    $queryUpdate = "UPDATE cabin_reservation SET cabin_no = '$cabin_no', time_of_stay = '$time_of_stay', amount_to_pay = '$amount_to_pay', time = '$time', date = '$date', location = '$location', promo_code = '$promo_code', payment_method = '$payment_method', status = '$status' WHERE id={$_GET['id']}";
-                    $pushNotification = "INSERT INTO notifications (username, description) VALUES ('$username', 'An admin updated your cabin reservation.')";
-
-                    if ($conn->query($queryUpdate) && $conn->query($pushNotification)) {
-                        $success_msg = "Reservation successfully updated!";
-                    } else {
-                        $err_msg = "Error updating reservation: " . $conn->error;
-                    }
-                };
-            }
+            if (isset($number) && !empty($number)) sendSMS("Hi ". $number .", ", formatPhoneNumber($number));
         }
+    }
+
+    $queryUpdate = "UPDATE cabin_reservation SET cabin_no = '$cabin_no', time_of_stay = '$time_of_stay', amount_to_pay = '$amount_to_pay', time = '$time', date = '$date', location = '$location', promo_code = '$promo_code', payment_method = '$payment_method', status = '$status' WHERE id={$_GET['id']}";
+            
+    $pushNotification = "INSERT INTO notifications (username, description) VALUES ('$username', 'An admin updated your cabin reservation.')";
+
+    if ($conn->query($queryUpdate) && $conn->query($pushNotification)) {
+        $success_msg = "Reservation successfully updated!";
+    } else {
+        $err_msg = "Error updating reservation: " . $conn->error;
     }
     
 }

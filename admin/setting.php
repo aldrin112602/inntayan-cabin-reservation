@@ -196,7 +196,7 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav flex-column">
                             <li class="nav-item text-center">
-                                <img src="../img/logo.png" alt="pims logo" class="img-fluid" width="200px">
+                                <img src="../assets/img/logo.png" alt="pims logo" class="img-fluid" width="200px">
                             </li>
                             <li class="nav-item text-center my-4">
                                 <img src="<?php echo $profile; ?>"
