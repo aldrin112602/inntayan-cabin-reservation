@@ -265,17 +265,35 @@
                     <?php
                     if(isset($_POST['cabin_status'])) {
                         $status = $_POST['cabin_status'];
-                        if(mysqli_query($conn, "INSERT INTO cabin(status) VALUES('$status')")) {
+                        $cabin_no = $_POST['cabin_no'];
+                        if(isDataExists("cabin", "*", "cabin_no='$cabin_no'")) {
                             echo '<script>
                                 $(document).ready(function() {
                                     Swal.fire({
-                                        title: "Success!",
-                                        text: "Cabin added successfully",
-                                        icon: "success"
+                                        title: "Ops!",
+                                        text: "Cabin no. already registered",
+                                        icon: "error"
+                                    }).then(() => {
+                                        location.href = "./manage_cabins.php"
                                     });
                                 })
                             </script>';
+                        } else {
+                            if(mysqli_query($conn, "INSERT INTO cabin(status, cabin_no) VALUES('$status', '$cabin_no')")) {
+                                echo '<script>
+                                    $(document).ready(function() {
+                                        Swal.fire({
+                                            title: "Success!",
+                                            text: "Cabin added successfully",
+                                            icon: "success"
+                                        }).then(() => {
+                                            location.href = "./manage_cabins.php"
+                                        });
+                                    })
+                                </script>';
+                            }
                         }
+                        
                     }
                     ?>
 
@@ -290,7 +308,10 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <label class="form-label">Status:</label>
+                                    <label class="form-label">Cabin No.:</label>
+                                    <input required type="number" class="form-control form-control-sm" name="cabin_no">
+
+                                    <label class="form-label mt-3">Status:</label>
                                     <select required class="form-select form-select-sm" name="cabin_status">
                                         <option selected disabled class="d-none"></option>
                                         <option value="Enabled">Enabled</option>

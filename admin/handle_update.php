@@ -14,8 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $payment_method = $post['payment_method'];
     $status = $post['status'];
     $username = $post['username'];
+
+    $time_of_stay = $post['time_of_stay'];
+    $amount_to_pay = $post['amount_to_pay'];
     
-    $queryUpdate = "UPDATE cabin_reservation SET cabin_no = '$cabin_no', time = '$time', date = '$date', location = '$location', promo_code = '$promo_code', payment_method = '$payment_method', status = '$status' WHERE id={$_GET['id']}";
+    $queryUpdate = "UPDATE cabin_reservation SET cabin_no = '$cabin_no', time_of_stay = '$time_of_stay', amount_to_pay = '$amount_to_pay', time = '$time', date = '$date', location = '$location', promo_code = '$promo_code', payment_method = '$payment_method', status = '$status' WHERE id={$_GET['id']}";
 
 
     $pushNotification = "INSERT INTO notifications (username, description) VALUES ('$username', 'An admin updated your cabin reservation.')";

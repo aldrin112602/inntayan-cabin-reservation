@@ -217,6 +217,13 @@
                                     Booking records
                                 </a>
                             </li>
+                            <li class="nav-item my-1">
+                                <a href="./manage_cabins.php"
+                                    class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
+                                    <span class="material-symbols-outlined">book</span>
+                                    Manage Cabins
+                                </a>
+                            </li>
                             <li class="nav-item my-1  current-page">
                                 <a href=""
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">

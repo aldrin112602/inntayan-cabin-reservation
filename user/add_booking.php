@@ -468,16 +468,19 @@
                         </div>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Cabin No.</small>
-                            <select name="cabin_no" class="form-select form-select-md">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
+                            <select required name="cabin_no" class="form-select form-select-md">
+                                <option selected disabled value="" class="d-none">Select a Cabin</option>
+                                <?php
+                                    $sql = "SELECT * FROM cabin";
+                                    $results = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($results)) {
+                                    ?>
+                                        <option <?php echo $row['status'] == 'Disabled' ? 'disabled' : null ?> value="<?= $row['cabin_no']?>"><?= $row['cabin_no']?></option>
+                                    <?php
+                                    }
+                                ?>
                             </select>
+
                         </div>
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Payment Method</small>

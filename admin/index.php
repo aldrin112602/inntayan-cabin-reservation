@@ -120,6 +120,13 @@
                                 </a>
                             </li>
                             <li class="nav-item my-1">
+                                <a href="./manage_cabins.php"
+                                    class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
+                                    <span class="material-symbols-outlined">book</span>
+                                    Manage Cabins
+                                </a>
+                            </li>
+                            <li class="nav-item my-1">
                                 <a href="setting.php"
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">settings</span>
@@ -338,10 +345,13 @@
                             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12 col-12 overflow-hidden">
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-muted">Total Male</h5>
+                                        <h5 class="text-muted">Available cabins</h5>
                                         <div class="metric-value d-inline-block">
                                             <h1 class="mb-1">
-                                                1
+                                                <?php
+                                                 echo count(getRows("status='Enabled'", "cabin"))
+                                                
+                                                ?>
                                             </h1>
                                         </div>
                                     </div>

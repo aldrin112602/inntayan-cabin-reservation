@@ -71,6 +71,7 @@ if (!$conn->query($queryCreateTable)) {
 $queryCreateTable = "CREATE TABLE IF NOT EXISTS cabin (
     id INT AUTO_INCREMENT PRIMARY KEY,
     status VARCHAR(255) NOT NULL,
+    cabin_no INT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )";
 

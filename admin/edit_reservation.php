@@ -63,6 +63,9 @@
     <script src="../src/sweetalert2/sweetalert2.all.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
     <!-- custom styles -->
@@ -122,6 +125,13 @@
                                     class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
                                     <span class="material-symbols-outlined">book</span>
                                     Booking records
+                                </a>
+                            </li>
+                            <li class="nav-item my-1">
+                                <a href="./manage_cabins.php"
+                                    class="text-center text-white d-flex align-items-center justify-content-start gap-2 ml-4 fs-6">
+                                    <span class="material-symbols-outlined">book</span>
+                                    Manage Cabins
                                 </a>
                             </li>
                             <li class="nav-item my-1">
@@ -291,6 +301,49 @@
                             <input value="<?php echo $data[0]['location'] ?? null ?>" autocomplete="off" required
                                 class="form-control form-control-md" type="text" name="location">
                         </div>
+                        <div class="my-2">
+                            <small class="form-label fs-6 text-light" for="">Time of stay</small>
+                            <select required id="time_of_stay" name="time_of_stay" class="form-select form-select-md">
+                            </select>
+                        </div>
+
+                        <div class="my-2 position-relative">
+                            <small class="form-label fs-6 text-light" for="">Amount to pay</small>
+                            <input id="amount_to_pay" value="<?php echo $data[0]['amount_to_pay'] ?? null ?>" style="padding-left: 40px;" readonly
+                                class="form-control form-control-md" type="number" name="amount_to_pay">
+                            <i class="fa-solid fa-peso-sign"
+                                style="position: absolute; top: 50%; left: 20px; top: 57%;"></i>
+                        </div>
+
+                        <script>
+                        (function() {
+                            const d = document;
+                            const time_of_stay_select = d.getElementById('time_of_stay'),
+                                amount_to_pay = d.getElementById('amount_to_pay'),
+                                time = '<?php echo $data[0]['time_of_stay'] ?? null ?>';
+                            for (let i = 1; i <= 24; i++) {
+                                const option = d.createElement('option');
+                                const hoursText = i === 1 ? 'hour' : 'hours';
+                                option.value = `${i} ${hoursText}`;
+                                option.innerHTML = `${i} ${hoursText}`;
+                                if(time == `${i} ${hoursText}`) {
+                                     option.selected = true;
+                                }
+                                time_of_stay_select.appendChild(option);
+                            }
+
+                            time_of_stay_select.addEventListener('change', () => {
+                                const time_of_stay_value = parseInt(time_of_stay_select.value.split(' ')[
+                                    0]);
+                                if (time_of_stay_value > 24) {
+                                    amount_to_pay.value = 150;
+                                    return
+                                }
+                                amount_to_pay.value = time_of_stay_value * 300;
+
+                            })
+                        })();
+                        </script>
                         <div class="d-block d-md-flex justify-content-between align-items-center px-0">
                             <div class="my-2 col-12 col-md-5 px-0">
                                 <small class="form-label fs-6 text-light" for="">Date</small>
@@ -306,14 +359,15 @@
                         <div class="my-2">
                             <small class="form-label fs-6 text-light" for="">Cabin No.</small>
                             <select name="cabin_no" class="form-select form-select-md">
-                                <option value="1" <?php echo ($data[0]['cabin_no'] ?? null) == '1' ? 'selected' : null ?>>1</option>
-                                <option value="2" <?php echo ($data[0]['cabin_no'] ?? null) == '2' ? 'selected' : null ?>>2</option>
-                                <option value="3" <?php echo ($data[0]['cabin_no'] ?? null) == '3' ? 'selected' : null ?>>3</option>
-                                <option value="4" <?php echo ($data[0]['cabin_no'] ?? null) == '4' ? 'selected' : null ?>>4</option>
-                                <option value="5" <?php echo ($data[0]['cabin_no'] ?? null) == '5' ? 'selected' : null ?>>5</option>
-                                <option value="6" <?php echo ($data[0]['cabin_no'] ?? null) == '6' ? 'selected' : null ?>>6</option>
-                                <option value="7" <?php echo ($data[0]['cabin_no'] ?? null) == '7' ? 'selected' : null ?>>7</option>
-                                <option value="8" <?php echo ($data[0]['cabin_no'] ?? null) == '8' ? 'selected' : null ?>>8</option>
+                                <?php
+                                    $sql = "SELECT * FROM cabin";
+                                    $results = mysqli_query($conn, $sql);
+                                    while ($row = mysqli_fetch_assoc($results)) {
+                                    ?>
+                                        <option <?php echo $row['cabin_no'] == $data[0]['cabin_no'] ? 'selected' : null ?> <?php echo $row['status'] == 'Disabled' ? 'disabled' : null ?> value="<?= $row['cabin_no']?>"><?= $row['cabin_no']?></option>
+                                    <?php
+                                    }
+                                ?>
                             </select>
                         </div>
                         <div class="my-2">
@@ -329,22 +383,33 @@
                                 <option value="Others" <?php echo ($data[0]['payment_method'] ?? null) == 'Others' ? 'selected' : null ?>>Others</option>
                             </select>
                         </div>
-                        <div class="my-2">
-                            <small class="form-label fs-6 text-light" for="">Status</small>
-                            <select name="status" class="form-select form-select-md">
-                                <option value="Pending" <?php echo ($data[0]['status'] ?? null) == 'Pending' ? 'selected' : null ?>>Pending</option>
-                                <option value="Approved" <?php echo ($data[0]['status'] ?? null) == 'Approved' ? 'selected' : null ?>>Approved</option>
-                                <option value="Declined" <?php echo ($data[0]['status'] ?? null) == 'Declined' ? 'selected' : null ?>>Declined</option>
-                                <option value="Cancelled" <?php echo ($data[0]['status'] ?? null) == 'Cancelled' ? 'selected' : null ?>>Cancelled</option>
-                                
-                            </select>
+                        <div class="my-2 d-block d-md-flex align-items-center justify-content-between">
+                            <div>
+                                <small class="form-label fs-6 text-light" for="">Proof of payment</small>
+                                <a href="../user/payments/<?php echo ($data[0]['proof_of_payment'] ?? null)  ?>">
+                                    <img class="d-block rounded" title="click to view" width="200px" src="../user/payments/<?php echo ($data[0]['proof_of_payment'] ?? null)  ?>">
+                                </a>
+                            </div>
+
+                            <div class="col px-0 pl-3">
+                                <div>
+                                    <small class="form-label fs-6 text-light" for="">Status</small>
+                                    <select name="status" class="form-select form-select-md">
+                                        <option value="Pending" <?php echo ($data[0]['status'] ?? null) == 'Pending' ? 'selected' : null ?>>Pending</option>
+                                        <option value="Approved" <?php echo ($data[0]['status'] ?? null) == 'Approved' ? 'selected' : null ?>>Approved</option>
+                                        <option value="Declined" <?php echo ($data[0]['status'] ?? null) == 'Declined' ? 'selected' : null ?>>Declined</option>
+                                        <option value="Cancelled" <?php echo ($data[0]['status'] ?? null) == 'Cancelled' ? 'selected' : null ?>>Cancelled</option>
+                                    </select>
+                                </div>
+                                <div class="mt-3">
+                                    <small class="form-label fs-6 text-light" for="">Promo Code</small>
+                                    <input value="<?php echo $data[0]['promo_code'] ?? null ?>" autocomplete="off" required
+                                        class="form-control form-control-md" type="number" name="promo_code">
+                                </div>
+                            </div>
                         </div>
-                        <div class="my-2">
-                            <small class="form-label fs-6 text-light" for="">Promo Code</small>
-                            <input value="<?php echo $data[0]['promo_code'] ?? null ?>" autocomplete="off" required
-                                class="form-control form-control-md" type="number" name="promo_code">
-                        </div>
-                        <div class="my-2">
+                        
+                        <div class="mt-4">
                             <button class="btn btn-primary btn-sm" type="submit">Update booking</button>
                         </div>
                     </form>
